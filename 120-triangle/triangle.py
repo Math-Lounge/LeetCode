@@ -4,6 +4,19 @@ class Solution:
     # tri[i,j] = tri[i,j].value + min(tri[i-1,j], tri[i-1,j-1], tri[i-1,j+1])
 
     def minimumTotal (self, triangle: List[List[int]]) -> int:
+        return self.minimumBottomUp (triangle)
+
+    def minimumBottomUp (self, triangle: List[List[int]]) -> int:
+        N = len (triangle)
+        last = triangle [-1]
+        for level in reversed (range (N - 1)):
+            path = [0] * (level+1)
+            for cell in range (level+1):
+                path [cell] = triangle [level] [cell] + min (last [cell], last [cell+1])
+            last = path
+        return last [0]
+
+    def minimumTopDown (self, triangle: List[List[int]]) -> int:
         N = len (triangle)
         last = triangle [0]
         for level in range (1, N):
