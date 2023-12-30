@@ -8,9 +8,9 @@ class Solution:
         last = triangle [0]
         for level in range (1, N):
             path = [0] * (level+1)
-            path [0] = last [0] + triangle [level] [0]
+            path [0]     = triangle [level] [0]     + last [0]       # Direct down
+            path [level] = triangle [level] [level] + last [level-1] # Slide right
             for cell in range (1, level):
                 path [cell] = triangle [level] [cell] + min (last [cell-1], last [cell])
-            path [level] = triangle [level] [level] + last [level-1]
             last = path
         return min (last)
