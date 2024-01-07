@@ -13,5 +13,4 @@ class Solution:
             for c in range (r+1, n):
                 rc_rank = sum (cached [r]) + sum (cached [c]) - graph [r, c]
                 network_rank = max (network_rank, rc_rank)
-        print (graph.astype (int))
         return network_rank
